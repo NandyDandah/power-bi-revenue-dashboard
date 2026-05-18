@@ -1,0 +1,153 @@
+// Add the Date table first, then mark it as the date table in Power BI Desktop.
+// Model view: Table tools > Mark as date table > Date[Date].
+Date =
+ADDCOLUMNS (
+    CALENDAR (
+        MIN ( 'public orders'[order_date] ),
+        MAX ( 'public orders'[order_date] )
+    ),
+    "Year", YEAR ( [Date] ),
+    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+    "Month Number", MONTH ( [Date] ),
+    "Month", FORMAT ( [Date], "MMM" ),
+    "Year Month", FORMAT ( [Date], "YYYY-MM" ),
+    "Week Start", [Date] - WEEKDAY ( [Date], 2 ) + 1
+)
+
+// Create an active one-to-many relationship:
+// Date[Date] 1:* 'public orders'[order_date]
+
+// The PBIX already appears to contain these base measures:
+// [Total Revenue], [Total Orders], [Active Customers], [Average Order Value],
+// [Total Opportunities], [Total Pipeline Value], [Conversion Rate],
+// [Revenue Target Achievement].
+// Create those base measures only if they are missing in your copy.
+
+Won Opportunities =
+CALCULATE (
+    [Total Opportunities],
+    KEEPFILTERS ( 'public opportunities'[stage] IN { "Won", "Closed Won" } )
+)
+
+Lost Opportunities =
+CALCULATE (
+    [Total Opportunities],
+    KEEPFILTERS ( 'public opportunities'[stage] IN { "Lost", "Closed Lost" } )
+)
+
+Open Opportunities =
+CALCULATE (
+    [Total Opportunities],
+    NOT ( 'public opportunities'[stage] IN { "Won", "Closed Won", "Lost", "Closed Lost" } )
+)
+
+Opportunity Win Rate =
+DIVIDE ( [Won Opportunities], [Won Opportunities] + [Lost Opportunities] )
+
+Pipeline per Open Opportunity =
+DIVIDE ( [Total Pipeline Value], [Open Opportunities] )
+
+Revenue MTD =
+TOTALMTD ( [Total Revenue], 'Date'[Date] )
+
+Revenue QTD =
+TOTALQTD ( [Total Revenue], 'Date'[Date] )
+
+Revenue YTD =
+TOTALYTD ( [Total Revenue], 'Date'[Date] )
+
+Revenue Previous Month =
+CALCULATE ( [Total Revenue], DATEADD ( 'Date'[Date], -1, MONTH ) )
+
+Revenue Previous Quarter =
+CALCULATE ( [Total Revenue], DATEADD ( 'Date'[Date], -1, QUARTER ) )
+
+Revenue Previous Year =
+CALCULATE ( [Total Revenue], DATEADD ( 'Date'[Date], -1, YEAR ) )
+
+Revenue MoM Change =
+[Total Revenue] - [Revenue Previous Month]
+
+Revenue MoM % =
+DIVIDE ( [Revenue MoM Change], [Revenue Previous Month] )
+
+Revenue QoQ % =
+DIVIDE ( [Total Revenue] - [Revenue Previous Quarter], [Revenue Previous Quarter] )
+
+Revenue YoY % =
+DIVIDE ( [Total Revenue] - [Revenue Previous Year], [Revenue Previous Year] )
+
+Orders Previous Month =
+CALCULATE ( [Total Orders], DATEADD ( 'Date'[Date], -1, MONTH ) )
+
+Orders MoM % =
+DIVIDE ( [Total Orders] - [Orders Previous Month], [Orders Previous Month] )
+
+Average Order Value Previous Month =
+CALCULATE ( [Average Order Value], DATEADD ( 'Date'[Date], -1, MONTH ) )
+
+Average Order Value MoM % =
+DIVIDE (
+    [Average Order Value] - [Average Order Value Previous Month],
+    [Average Order Value Previous Month]
+)
+
+Rep Revenue Rank =
+RANKX (
+    ALLSELECTED ( 'public sales_reps'[rep_name] ),
+    [Total Revenue],
+    ,
+    DESC,
+    DENSE
+)
+
+Rep Pipeline Rank =
+RANKX (
+    ALLSELECTED ( 'public sales_reps'[rep_name] ),
+    [Total Pipeline Value],
+    ,
+    DESC,
+    DENSE
+)
+
+Revenue Share by Rep =
+DIVIDE (
+    [Total Revenue],
+    CALCULATE ( [Total Revenue], ALLSELECTED ( 'public sales_reps'[rep_name] ) )
+)
+
+Pipeline Share by Rep =
+DIVIDE (
+    [Total Pipeline Value],
+    CALCULATE ( [Total Pipeline Value], ALLSELECTED ( 'public sales_reps'[rep_name] ) )
+)
+
+Rep Performance Score =
+VAR RevenueScore =
+    0.45 * DIVIDE (
+        [Total Revenue],
+        CALCULATE ( MAXX ( VALUES ( 'public sales_reps'[rep_name] ), [Total Revenue] ), ALLSELECTED () )
+    )
+VAR WinScore =
+    0.25 * [Opportunity Win Rate]
+VAR PipelineScore =
+    0.20 * DIVIDE (
+        [Total Pipeline Value],
+        CALCULATE ( MAXX ( VALUES ( 'public sales_reps'[rep_name] ), [Total Pipeline Value] ), ALLSELECTED () )
+    )
+VAR AovScore =
+    0.10 * DIVIDE (
+        [Average Order Value],
+        CALCULATE ( MAXX ( VALUES ( 'public sales_reps'[rep_name] ), [Average Order Value] ), ALLSELECTED () )
+    )
+RETURN
+    RevenueScore + WinScore + PipelineScore + AovScore
+
+Rep Performance Tier =
+SWITCH (
+    TRUE (),
+    [Rep Performance Score] >= 0.80, "Elite",
+    [Rep Performance Score] >= 0.60, "Strong",
+    [Rep Performance Score] >= 0.40, "Developing",
+    "Needs Focus"
+)

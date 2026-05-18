@@ -1,0 +1,4 @@
+pbix_unpacked/
+*.tmp
+*.log
+~$*
