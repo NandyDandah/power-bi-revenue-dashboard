@@ -1,4 +1,12 @@
 pbix_unpacked/
+pbix_current_check/
+pbix_repack_normalize/
+*.corrupted-backup.pbix
+*.lnk
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+**/.pbi/editorSettings.json
+**/.pbi/unappliedChanges.json
 *.tmp
 *.log
 ~$*

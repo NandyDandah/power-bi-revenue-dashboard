@@ -1,0 +1,52 @@
+table 'public vw_kpi_summary'
+	lineageTag: c7fa366f-e848-4f70-8e1c-813accf164c0
+
+	column total_revenue
+		dataType: double
+		lineageTag: eb583345-2286-4a68-819e-5dab35a30ab4
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 103efdd6-ad27-46e7-b451-4f6af4917125
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: a50f9eea-184e-4b8d-b864-a17eb79b8e49
+		summarizeBy: sum
+		sourceColumn: total_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_order_value
+		dataType: double
+		lineageTag: 8a71a2b4-9051-4e0b-9a02-8a973d0eabbd
+		summarizeBy: sum
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public vw_kpi_summary' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_vw_kpi_summary = Source{[Schema="public",Item="vw_kpi_summary"]}[Data]
+				in
+				    public_vw_kpi_summary
+
+	annotation PBI_ResultType = Table
+

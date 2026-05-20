@@ -1,0 +1,197 @@
+table 'public vw_rep_performance (2)'
+	lineageTag: 51a406d6-7d77-40b6-89e2-15ae2086362e
+
+	column rep_name
+		dataType: string
+		lineageTag: ee6b531b-23f2-4b11-9080-6a453b32202c
+		summarizeBy: none
+		sourceColumn: rep_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: string
+		lineageTag: 29d866df-3b15-423e-8c44-caa73b36bf47
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: a8d2a490-2635-41ea-8040-65aa7be6af4b
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: ab84a233-2b6b-406d-8279-527763be1deb
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: 848e2913-5a14-43f7-9e35-0d96160aff7b
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_order_value
+		dataType: double
+		lineageTag: 8b6b4b10-4c91-4bf4-ac90-d6bb343d4f23
+		summarizeBy: sum
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unique_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c94ad85-1961-43b1-839e-6a2235cee0fb
+		summarizeBy: sum
+		sourceColumn: unique_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_ytd
+		dataType: double
+		lineageTag: a2225351-5861-4487-a061-fd5fe04d180a
+		summarizeBy: sum
+		sourceColumn: revenue_ytd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue_mtd
+		dataType: double
+		lineageTag: bf9660b8-88ba-45e9-961f-9908a3a3318f
+		summarizeBy: sum
+		sourceColumn: revenue_mtd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_opportunities
+		dataType: int64
+		formatString: 0
+		lineageTag: bc96630b-81f7-4ceb-ad56-69c982c77f5b
+		summarizeBy: sum
+		sourceColumn: total_opportunities
+
+		annotation SummarizationSetBy = Automatic
+
+	column won_opportunities
+		dataType: int64
+		formatString: 0
+		lineageTag: 0967b59e-98ce-48d5-ba4f-801a8ac93c99
+		summarizeBy: sum
+		sourceColumn: won_opportunities
+
+		annotation SummarizationSetBy = Automatic
+
+	column open_opportunities
+		dataType: int64
+		formatString: 0
+		lineageTag: 94677ad7-6b13-4c5c-b610-919af8fdb7c0
+		summarizeBy: sum
+		sourceColumn: open_opportunities
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_pipeline_value
+		dataType: double
+		lineageTag: 811136db-a300-40e1-b08b-20fb141a224c
+		summarizeBy: sum
+		sourceColumn: total_pipeline_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column win_rate
+		dataType: double
+		lineageTag: 5aaa246f-74fd-45a3-9ddc-a1ea4df4a7e2
+		summarizeBy: sum
+		sourceColumn: win_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 91bfd649-b3c5-4b51-8b1f-c2b90eb15259
+		summarizeBy: sum
+		sourceColumn: revenue_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column pipeline_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ba1553f-0c91-4d1c-afa5-791f93ca0b31
+		summarizeBy: sum
+		sourceColumn: pipeline_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_share
+		dataType: double
+		lineageTag: 9e5a47d0-f1ff-47d4-a6d1-da2d0ca5d4c0
+		summarizeBy: sum
+		sourceColumn: revenue_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pipeline_share
+		dataType: double
+		lineageTag: 43d8aa8e-ff48-475e-84a1-f71717ef982b
+		summarizeBy: sum
+		sourceColumn: pipeline_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column performance_score
+		dataType: double
+		lineageTag: 9273e015-e1ac-489a-b789-3911ee436bf1
+		summarizeBy: sum
+		sourceColumn: performance_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column performance_tier
+		dataType: string
+		lineageTag: 7363a8eb-ce6e-4395-afb7-167fc5724df4
+		summarizeBy: none
+		sourceColumn: performance_tier
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public vw_rep_performance (2)' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "revenue_dashboard"),
+				    public_vw_rep_performance = Source{[Schema="public",Item="vw_rep_performance"]}[Data]
+				in
+				    public_vw_rep_performance
+

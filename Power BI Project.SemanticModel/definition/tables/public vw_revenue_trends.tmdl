@@ -1,0 +1,68 @@
+table 'public vw_revenue_trends'
+	lineageTag: 116815b2-0a16-48b3-8515-5b9d3215ad65
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bac9ef7a-914a-48cb-be73-a4d4d35d5a7b
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 365a2c23-4278-4e2d-9d97-54775fac0e96
+			defaultHierarchy: LocalDateTable_04c5ade2-4776-4331-b146-dabacc000f47.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_revenue
+		dataType: double
+		lineageTag: 0e79c171-dde1-4005-8716-fac54c065a04
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a711d05-2695-45a8-9514-80dbcb8798a8
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 8428a41d-b8aa-4953-b7ac-14c66de0145c
+		summarizeBy: sum
+		sourceColumn: active_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_order_value
+		dataType: double
+		lineageTag: a097c97b-e27f-44cd-9f46-99b6a2f86b40
+		summarizeBy: sum
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public vw_revenue_trends' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_vw_revenue_trends = Source{[Schema="public",Item="vw_revenue_trends"]}[Data]
+				in
+				    public_vw_revenue_trends
+
+	annotation PBI_ResultType = Table
+

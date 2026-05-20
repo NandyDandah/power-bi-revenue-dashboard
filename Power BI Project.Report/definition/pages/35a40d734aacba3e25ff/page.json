@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "35a40d734aacba3e25ff",
+  "displayName": "Executive Overview",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "f7922d554f36265ebce8",
+      "target": "e38fefcaae2f53fc1436",
+      "type": "DataFilter"
+    }
+  ]
+}

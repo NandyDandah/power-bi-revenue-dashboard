@@ -1,0 +1,35 @@
+table Deal_Status
+	lineageTag: 4a7756f6-3e1a-4d5d-b48d-99040502ac1a
+
+	measure 'Deal Count' =
+			
+			SWITCH(
+			    SELECTEDVALUE(Deal_Status[Status]),
+			    "Won", [Won Deals],
+			    "Lost", [Lost Deals]
+			)
+		formatString: 0
+		lineageTag: a24797ca-4b82-40cd-991a-c13a80f01bf3
+
+	column Status
+		lineageTag: 96951b98-cbb5-40e6-8fca-131a993aebbc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Deal_Status = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Status", STRING,
+				    {
+				        {"Won"},
+				        {"Lost"}
+				    }
+				)
+
+	annotation PBI_Id = bfe9817ac0594574a9d084d41845c6f7
+

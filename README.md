@@ -1,21 +1,25 @@
 # Revenue Performance Dashboard
 
-Power BI revenue analytics project with executive performance reporting, customer retention analysis, sales funnel tracking, and a completion pack for advanced sales rep performance reporting.
+Professional Power BI revenue analytics project built to show executive reporting, sales funnel analysis, customer retention, and sales representative performance. The project is structured as both a PBIX deliverable and an editable PBIP source project, making it easier to review the report, inspect the semantic model, and evaluate the DAX/report-building work.
 
 ## Project Contents
 
 - `Revenue Performance Dashboard.pbix` - main Power BI dashboard file.
+- `Power BI Project.pbip` - editable Power BI Project file.
+- `Power BI Project.Report/` - report page and visual definitions.
+- `Power BI Project.SemanticModel/` - semantic model, relationships, tables, and DAX measures.
 - `Project Assets/DAX/Advanced_KPI_Time_Intelligence_Measures.dax` - advanced KPI, sales rep performance, and time intelligence measures.
 - `Project Assets/Themes/Revenue_Dashboard_Light.json` - light Power BI dashboard theme.
 - `Project Assets/Themes/Revenue_Dashboard_Dark.json` - dark Power BI dashboard theme.
 - `Project Assets/Pages/Sales_Rep_Performance_Dashboard.md` - layout guide for the Sales Rep Performance page.
+- `RECRUITER_CASE_STUDY.md` - portfolio summary for recruiters and hiring managers.
 
 ## Dashboard Pages
 
-- Executive revenue overview
-- Customer retention
-- Sales funnel
-- Sales rep performance blueprint
+- Executive Overview
+- Customer Retention
+- Sales Funnel
+- Sales Rep Performance
 
 ## Features
 
@@ -24,18 +28,27 @@ Power BI revenue analytics project with executive performance reporting, custome
 - Opportunity funnel and pipeline tracking
 - Advanced DAX measures for MTD, QTD, YTD, MoM, QoQ, and YoY trends
 - Sales representative ranking, contribution share, and performance scoring
-- Importable dark and light Power BI themes
+- Recruiter-friendly PBIP source structure with report and semantic model files
+- Professional light and dark Power BI themes
 
-## How To Use
+## Skills Demonstrated
 
-1. Open `Revenue Performance Dashboard.pbix` in Power BI Desktop.
-2. Review the existing report pages.
-3. Import a theme from `Project Assets/Themes`.
-4. Add the DAX measures from `Project Assets/DAX` if you want the advanced KPI and time intelligence layer.
-5. Use `Project Assets/Pages/Sales_Rep_Performance_Dashboard.md` to build the Sales Rep Performance page.
+- Power BI report design and page layout
+- DAX KPI development and time intelligence
+- Semantic model relationships and measure organization
+- Sales analytics, retention analysis, and pipeline reporting
+- GitHub-ready project packaging and documentation
+
+## How To Review
+
+1. Open `Power BI Project.pbip` in Power BI Desktop for the editable report project.
+2. Review the four report pages and the `Revenue_measures` table.
+3. Use `Revenue Performance Dashboard.pbix` as the packaged dashboard deliverable.
+4. Read `RECRUITER_CASE_STUDY.md` for a concise portfolio explanation.
 
 ## Tools
 
 - Power BI Desktop
 - DAX
 - Power BI JSON themes
+- Git/GitHub

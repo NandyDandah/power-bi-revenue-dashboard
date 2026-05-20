@@ -1,0 +1,54 @@
+table 'public sales_activities (2)'
+	lineageTag: 3c61a910-57bd-49ac-9263-9081d2f91177
+
+	column activity_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 878bbc48-f928-4bad-b58b-de74ca8396d6
+		summarizeBy: sum
+		sourceColumn: activity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c24b481-c846-42f8-9b7d-4c0d6f79a83c
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a71f0cb-440e-4582-acc8-7f8123f3d7cf
+		summarizeBy: none
+		sourceColumn: activity_date
+
+		variation Variation
+			isDefault
+			relationship: e8a73f62-2e68-4f09-afcb-30f1f51fef0a
+			defaultHierarchy: LocalDateTable_7780a40f-fe8d-497d-b582-505c76f1c255.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column activity_type
+		dataType: string
+		lineageTag: def56fae-bb30-4cca-ae53-4e7268fff558
+		summarizeBy: none
+		sourceColumn: activity_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public sales_activities (2)' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "revenue_dashboard"),
+				    public_sales_activities = Source{[Schema="public",Item="sales_activities"]}[Data]
+				in
+				    public_sales_activities
+

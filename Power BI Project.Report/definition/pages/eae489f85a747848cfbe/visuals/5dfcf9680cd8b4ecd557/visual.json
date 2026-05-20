@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "5dfcf9680cd8b4ecd557",
+  "position": {
+    "x": 418,
+    "y": 314,
+    "z": 6000,
+    "height": 256,
+    "width": 280,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public customers"
+                    }
+                  },
+                  "Property": "region"
+                }
+              },
+              "queryRef": "public customers.region",
+              "nativeQueryRef": "region",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public opportunities"
+                    }
+                  },
+                  "Property": "stage"
+                }
+              },
+              "queryRef": "public opportunities.stage",
+              "nativeQueryRef": "stage",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "public sales_reps"
+                    }
+                  },
+                  "Property": "rep_name"
+                }
+              },
+              "queryRef": "public sales_reps.rep_name",
+              "nativeQueryRef": "rep_name",
+              "active": false
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

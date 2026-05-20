@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "a0000000000000000005",
+  "position": {
+    "x": 752,
+    "y": 92,
+    "z": 1003,
+    "height": 102,
+    "width": 220,
+    "tabOrder": 1003
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Revenue_measures"
+                    }
+                  },
+                  "Property": "Opportunity Win Rate"
+                }
+              },
+              "queryRef": "Revenue_measures.Opportunity Win Rate",
+              "nativeQueryRef": "Opportunity Win Rate"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

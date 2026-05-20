@@ -1,0 +1,156 @@
+{
+  "name": "Revenue Dashboard Dark",
+  "dataColors": [
+    "#58A6FF",
+    "#3FB950",
+    "#D29922",
+    "#F778BA",
+    "#A371F7",
+    "#39C5CF",
+    "#FF7B72",
+    "#8B949E"
+  ],
+  "foreground": "#F0F6FC",
+  "foregroundNeutralSecondary": "#C9D1D9",
+  "foregroundNeutralTertiary": "#8B949E",
+  "background": "#0D1117",
+  "backgroundLight": "#161B22",
+  "backgroundNeutral": "#30363D",
+  "tableAccent": "#58A6FF",
+  "good": "#3FB950",
+  "neutral": "#D29922",
+  "bad": "#FF7B72",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28,
+      "color": "#F0F6FC"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 13,
+      "color": "#F0F6FC"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#F0F6FC"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#C9D1D9"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#161B22"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#30363D"
+              }
+            },
+            "radius": 4
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#F0F6FC"
+              }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": "#161B22"
+              }
+            },
+            "alignment": "left"
+          }
+        ],
+        "categoryAxis": [
+          {
+            "gridlineStyle": "dotted",
+            "labelColor": {
+              "solid": {
+                "color": "#C9D1D9"
+              }
+            },
+            "concatenateLabels": false
+          }
+        ],
+        "valueAxis": [
+          {
+            "gridlineStyle": "dotted",
+            "labelColor": {
+              "solid": {
+                "color": "#C9D1D9"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0D1117"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0D1117"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "cardVisual": {
+      "*": {
+        "label": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#C9D1D9"
+              }
+            }
+          }
+        ],
+        "value": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#58A6FF"
+              }
+            },
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ]
+      }
+    }
+  }
+}

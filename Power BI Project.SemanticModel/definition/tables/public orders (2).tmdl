@@ -1,0 +1,93 @@
+table 'public orders (2)'
+	lineageTag: 38841597-b7d4-4a92-8b36-cb03e7bc2530
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e24896c-f83a-4c74-984e-a4ee464da935
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f3989e48-6e9b-4d31-bdbc-f4c16662ba41
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a8da0141-97df-4bad-a230-7c2f2d0dc307
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rep_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e20abd2-ab5a-4853-a1d3-2d8027b66b90
+		summarizeBy: none
+		sourceColumn: rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2b1dac79-cf90-46e6-9d7b-529c7532fed5
+		summarizeBy: none
+		sourceColumn: order_date
+
+		variation Variation
+			isDefault
+			relationship: e81837b0-6cbe-47a6-881f-336aa90e57fb
+			defaultHierarchy: LocalDateTable_05516467-77a6-4c42-87d1-6f812181b2ce.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 129c0e7a-f420-4da1-8417-a9be550ad514
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column discount
+		dataType: double
+		lineageTag: 3982432e-865b-4fd5-80b3-ad82f0dc1dec
+		summarizeBy: sum
+		sourceColumn: discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue
+		dataType: double
+		lineageTag: b4d603fd-8d18-4476-9d65-010dc23854e4
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public orders (2)' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "revenue_dashboard"),
+				    public_orders = Source{[Schema="public",Item="orders"]}[Data]
+				in
+				    public_orders
+

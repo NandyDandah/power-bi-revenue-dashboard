@@ -1,0 +1,76 @@
+table 'public vw_rep_performance'
+	lineageTag: fdcec6e1-3e52-4f4e-bbf2-baa85fbb889b
+
+	column rep_name
+		dataType: string
+		lineageTag: 5d0352c5-a84d-4de9-9a11-7f9aaa2eb488
+		summarizeBy: none
+		sourceColumn: rep_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: string
+		lineageTag: ba107898-ded2-48ba-9b55-0c7533030b3a
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 442e42f0-3f0c-4d13-a998-6ddf14d43c80
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 767f8c63-8e5f-470e-a93d-d6d4cd1d1d71
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: 19069940-e2f1-4e78-b15f-2e7250452ce9
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_order_value
+		dataType: double
+		lineageTag: 79e16295-0f6a-48db-b62f-2521c3545931
+		summarizeBy: sum
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unique_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 5847c79e-edc7-46d7-9523-de3701893ad3
+		summarizeBy: sum
+		sourceColumn: unique_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public vw_rep_performance' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_vw_rep_performance = Source{[Schema="public",Item="vw_rep_performance"]}[Data]
+				in
+				    public_vw_rep_performance
+
+	annotation PBI_ResultType = Table
+

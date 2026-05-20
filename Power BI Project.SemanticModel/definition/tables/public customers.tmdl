@@ -1,0 +1,61 @@
+table 'public customers'
+	lineageTag: da96b011-1848-4381-a14d-c9cf0c197a7e
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ad939f0-e789-4cd1-824f-0496620e3a39
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: 356a262a-ecf0-478d-8410-1f13f222c7a4
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: 912a85fb-c5eb-47d9-8854-167fb65f0ae3
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: b35f6cfb-add0-44c8-a595-c9bdb9696f13
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column signup_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3e36b10b-4b7a-4900-b318-c238dbf4c2f0
+		summarizeBy: none
+		sourceColumn: signup_date
+
+		variation Variation
+			isDefault
+			relationship: f7263039-90d1-4994-8a5a-90f6ff295563
+			defaultHierarchy: LocalDateTable_2d7d2a5f-50bd-471d-93a4-305ac0ff3d1c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'public customers' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_customers = Source{[Schema="public",Item="customers"]}[Data]
+				in
+				    public_customers
+

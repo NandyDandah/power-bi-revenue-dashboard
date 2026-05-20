@@ -1,0 +1,77 @@
+table 'public opportunities'
+	lineageTag: bfcd1391-6c9d-49e4-8ba4-c2de8ae1800a
+
+	column opportunity_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 35b1b049-10a4-4164-b125-c26e08bd0cb8
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c466454-5877-461b-9810-984d61700e67
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rep_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bd4550c-1a9b-42ec-a2ee-f48dc2744295
+		summarizeBy: none
+		sourceColumn: rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 75274fb0-7edc-49fe-a038-2f20e5f5df56
+		summarizeBy: none
+		sourceColumn: created_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column stage
+		dataType: string
+		lineageTag: b01daed7-aed6-4e78-ad47-69d692646ef0
+		summarizeBy: none
+		sourceColumn: stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column estimated_value
+		dataType: double
+		lineageTag: 13a8757d-230b-4c93-bb37-6d48730f7ed5
+		summarizeBy: sum
+		sourceColumn: estimated_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_won
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 17b271e2-5026-466f-854d-374700183330
+		summarizeBy: none
+		sourceColumn: is_won
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public opportunities' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_opportunities = Source{[Schema="public",Item="opportunities"]}[Data]
+				in
+				    public_opportunities
+

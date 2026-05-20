@@ -1,0 +1,47 @@
+table 'public products (2)'
+	lineageTag: e3ad3b2a-f0f7-42c3-9ccd-ea19182de55f
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b919c6e0-b53f-4b1d-a2fd-068426913ac7
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: be110bd3-5ae6-4080-b2e9-1685c18483a1
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 2a576656-feee-4e27-b814-8476604e8785
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		lineageTag: a05e9d69-17fb-4035-abbe-9d89b57961b2
+		summarizeBy: none
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public products (2)' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "revenue_dashboard"),
+				    public_products = Source{[Schema="public",Item="products"]}[Data]
+				in
+				    public_products
+

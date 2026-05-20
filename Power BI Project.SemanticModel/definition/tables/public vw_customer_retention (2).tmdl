@@ -1,0 +1,75 @@
+table 'public vw_customer_retention (2)'
+	lineageTag: b30c7e5f-6004-4409-a6da-69721b62a98b
+
+	column order_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 118065a4-a990-4dea-9458-5e82d2dbe7f8
+		summarizeBy: none
+		sourceColumn: order_month
+
+		variation Variation
+			isDefault
+			relationship: b8b5681c-68b5-41e7-ace4-6a339d2800f3
+			defaultHierarchy: LocalDateTable_975a9e56-1bd1-4a0c-8f11-4ad02d08e521.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column active_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c6f1e15-3ce9-4b3e-841e-d7016eb30b16
+		summarizeBy: sum
+		sourceColumn: active_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column retained_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 951ba324-bb52-4cc7-84a4-c0352ccd1733
+		summarizeBy: sum
+		sourceColumn: retained_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention_rate
+		dataType: double
+		lineageTag: d93e9c1f-1556-4c62-bfc2-2239638d6ce2
+		summarizeBy: sum
+		sourceColumn: retention_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column previous_month_active_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: dceb09a5-8f80-4280-a594-a5fde967198b
+		summarizeBy: sum
+		sourceColumn: previous_month_active_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_customers_mom_pct
+		dataType: double
+		lineageTag: 5fe8320b-a5b9-4504-9749-7a71293b6395
+		summarizeBy: sum
+		sourceColumn: active_customers_mom_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public vw_customer_retention (2)' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "revenue_dashboard"),
+				    public_vw_customer_retention = Source{[Schema="public",Item="vw_customer_retention"]}[Data]
+				in
+				    public_vw_customer_retention
+

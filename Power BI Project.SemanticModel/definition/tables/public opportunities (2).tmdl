@@ -1,0 +1,82 @@
+table 'public opportunities (2)'
+	lineageTag: 3a42bb62-381b-4a84-87ab-0070c9d2d4af
+
+	column opportunity_id
+		dataType: int64
+		formatString: 0
+		lineageTag: dca7fec5-f5b3-4b60-8c60-5bed336db196
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 698922fa-03e3-4d48-99eb-53b668dc9180
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rep_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d4cc253f-36df-4316-bbc8-e500f927e71c
+		summarizeBy: none
+		sourceColumn: rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa12eb7f-a786-47ad-ac6c-e10eb5210c48
+		summarizeBy: none
+		sourceColumn: created_date
+
+		variation Variation
+			isDefault
+			relationship: 967b41e3-d563-4bea-8658-0f166fa12937
+			defaultHierarchy: LocalDateTable_135d3afe-782b-4321-9d37-64c54b4ce323.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column stage
+		dataType: string
+		lineageTag: 0d41caad-ba2d-420c-9548-94f9913133b8
+		summarizeBy: none
+		sourceColumn: stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column estimated_value
+		dataType: double
+		lineageTag: 59ad76b8-86be-4de7-8d72-649275264d83
+		summarizeBy: sum
+		sourceColumn: estimated_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_won
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c40df17b-0203-44b2-80b7-8b51904b8223
+		summarizeBy: none
+		sourceColumn: is_won
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public opportunities (2)' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "revenue_dashboard"),
+				    public_opportunities = Source{[Schema="public",Item="opportunities"]}[Data]
+				in
+				    public_opportunities
+

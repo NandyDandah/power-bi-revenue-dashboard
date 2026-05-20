@@ -1,0 +1,56 @@
+table 'public vw_customer_retention'
+	lineageTag: 1212ad5f-cf9b-4019-8aa7-672176bd115d
+
+	column order_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6716550a-dc4f-438e-81e4-7cf836b5c957
+		summarizeBy: none
+		sourceColumn: order_month
+
+		variation Variation
+			isDefault
+			relationship: c47bd524-7d08-4215-a87b-bab77244f597
+			defaultHierarchy: LocalDateTable_fc6ef7d6-1bab-40db-9fee-aff4c70cbbbd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column active_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: 93377c27-07d9-4dba-966f-87073962b7f1
+		summarizeBy: sum
+		sourceColumn: active_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column retained_customers
+		dataType: int64
+		formatString: 0
+		lineageTag: b52b8683-a316-43c4-b179-8c1c0c247aa5
+		summarizeBy: sum
+		sourceColumn: retained_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention_rate
+		dataType: double
+		lineageTag: f6bf4633-85c9-43a5-b1ef-98d19219385b
+		summarizeBy: sum
+		sourceColumn: retention_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public vw_customer_retention' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_vw_customer_retention = Source{[Schema="public",Item="vw_customer_retention"]}[Data]
+				in
+				    public_vw_customer_retention
+

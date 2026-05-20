@@ -1,0 +1,139 @@
+relationship c47bd524-7d08-4215-a87b-bab77244f597
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_customer_retention'.order_month
+	toColumn: LocalDateTable_fc6ef7d6-1bab-40db-9fee-aff4c70cbbbd.Date
+
+relationship f7263039-90d1-4994-8a5a-90f6ff295563
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public customers'.signup_date
+	toColumn: LocalDateTable_2d7d2a5f-50bd-471d-93a4-305ac0ff3d1c.Date
+
+relationship fa00e03c-16d8-4338-b92d-6485437d270b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public orders'.order_date
+	toColumn: LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e.Date
+
+relationship 3e2f893a-9a32-476a-9567-6cb8a6129dc0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public sales_activities'.activity_date
+	toColumn: LocalDateTable_e118999c-bef0-43e7-a549-2b5e6fd15a0e.Date
+
+relationship 365a2c23-4278-4e2d-9d97-54775fac0e96
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_revenue_trends'.month
+	toColumn: LocalDateTable_04c5ade2-4776-4331-b146-dabacc000f47.Date
+
+relationship 073a74fd-4b6c-4d76-8de7-dadb59eb7c94
+	fromColumn: 'public opportunities'.customer_id
+	toColumn: 'public customers'.customer_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 73b3b0a3-d64f-4b18-b23f-16584d051af0
+	fromColumn: 'public opportunities'.rep_id
+	toColumn: 'public sales_reps'.rep_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5a582629-904d-45ef-b908-f7275e8b2eae
+	fromColumn: 'public orders'.customer_id
+	toColumn: 'public customers'.customer_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship a132b9e7-975c-4e92-ae12-771788abc75a
+	fromColumn: 'public orders'.product_id
+	toColumn: 'public products'.product_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 0bf76e72-dfa5-4751-8c0e-1464c94b9f0c
+	fromColumn: 'public orders'.rep_id
+	toColumn: 'public sales_reps'.rep_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3e9f5b26-e641-42d6-90a1-cc32071e2378
+	fromColumn: 'public sales_activities'.opportunity_id
+	toColumn: 'public opportunities'.opportunity_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 787f602d-b318-a4e3-8142-75c500ed24cc
+	isActive: false
+	fromColumn: 'public opportunities'.created_date
+	toColumn: 'public customers'.customer_name
+
+relationship f0b23286-831e-4ae3-638b-2c5a73ab830b
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'public opportunities'.rep_id
+	toColumn: 'public sales_reps'.team
+
+relationship b8b5681c-68b5-41e7-ace4-6a339d2800f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_customer_retention (2)'.order_month
+	toColumn: LocalDateTable_975a9e56-1bd1-4a0c-8f11-4ad02d08e521.Date
+
+relationship 5c7584e3-213b-4f62-9034-a893e6e0df07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public vw_revenue_trends (2)'.month
+	toColumn: LocalDateTable_33b18ff6-c0b5-4d76-955d-2331f5e47534.Date
+
+relationship e7758b0a-4de4-4718-92e0-dc8e4fd937d2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public customers (2)'.signup_date
+	toColumn: LocalDateTable_9d0b1d08-4497-46ec-83f0-db8a585b9c7d.Date
+
+relationship 967b41e3-d563-4bea-8658-0f166fa12937
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public opportunities (2)'.created_date
+	toColumn: LocalDateTable_135d3afe-782b-4321-9d37-64c54b4ce323.Date
+
+relationship e81837b0-6cbe-47a6-881f-336aa90e57fb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public orders (2)'.order_date
+	toColumn: LocalDateTable_05516467-77a6-4c42-87d1-6f812181b2ce.Date
+
+relationship e8a73f62-2e68-4f09-afcb-30f1f51fef0a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'public sales_activities (2)'.activity_date
+	toColumn: LocalDateTable_7780a40f-fe8d-497d-b582-505c76f1c255.Date
+
+relationship 22e1fc2a-7790-45c2-8d05-9c8f08b2b010
+	fromColumn: 'public opportunities (2)'.customer_id
+	toColumn: 'public customers (2)'.customer_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 1d4b9ced-d02b-4746-b4a6-39fc5214b2c7
+	fromColumn: 'public opportunities (2)'.rep_id
+	toColumn: 'public sales_reps (2)'.rep_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 556d9307-138c-40cd-bb7a-9c2bd039e004
+	fromColumn: 'public orders (2)'.customer_id
+	toColumn: 'public customers (2)'.customer_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3ba5ec85-dc33-455a-a19a-35fddb2fe12b
+	fromColumn: 'public orders (2)'.product_id
+	toColumn: 'public products (2)'.product_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4e4da3bc-451c-402e-a40b-6302fb6e6e0a
+	fromColumn: 'public orders (2)'.rep_id
+	toColumn: 'public sales_reps (2)'.rep_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship a394964d-acc9-41a7-9e43-66593182d119
+	fromColumn: 'public sales_activities (2)'.opportunity_id
+	toColumn: 'public opportunities (2)'.opportunity_id
+
+	annotation PBI_IsFromSource = FS
+

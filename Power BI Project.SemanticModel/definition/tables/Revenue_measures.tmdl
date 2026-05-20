@@ -1,0 +1,230 @@
+table Revenue_measures
+	lineageTag: af209064-157d-48ec-8779-f297b48678b5
+
+	measure 'Total Revenue' = SUM('public orders'[revenue])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: bf67eecb-f6fc-47e4-adfe-77b0008b853f
+
+	measure 'Total Orders' = COUNTROWS('public orders')
+		formatString: 0
+		lineageTag: 7309d8a6-8a35-41c3-96b2-d1ee878ea85b
+
+	measure 'Active Customers' = DISTINCTCOUNT('public orders'[customer_id])
+		formatString: 0
+		lineageTag: d357dc81-9926-4ddd-b0ef-ed6d3e33032f
+
+	measure 'Average Order Value' = DIVIDE([Total Revenue], [Total Orders])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6d49e2cc-9d84-4370-8257-47cc8e6f1276
+
+	measure 'Total Opportunities' = COUNTROWS('public opportunities')
+		formatString: 0
+		lineageTag: 78745ca9-d7af-4ea7-b3b8-4d2acef9040e
+
+	measure 'Won Opportunities' =
+			
+			CALCULATE(
+			    COUNTROWS('public opportunities'),
+			    'public opportunities'[is_won] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 066d54e2-43bd-408c-a6a2-8312d6ad399b
+
+	measure 'Conversion Rate' = DIVIDE([Won Opportunities], [Total Opportunities])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dd3b6ae4-ca85-44c7-b234-5a9d40882f99
+
+	measure 'Total Pipeline Value' = SUM('public opportunities'[estimated_value])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0da4c3dc-3a50-4ce8-931a-1de73b5136cf
+
+	measure 'Revenue Target' = 750000
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d6c210e3-5990-4cd2-954f-4193d611603d
+
+	measure 'Revenue Target Achievement' = DIVIDE([Total Revenue], [Revenue Target])
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 3a370828-1276-4274-bd19-fdab8d8221db
+
+	measure 'Retention Rate' = AVERAGE('public vw_customer_retention'[retention_rate])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4483614a-d83d-4739-9a11-362aba73d0bc
+
+	measure 'Monthly Active Customers' =
+			
+			SUM('public vw_customer_retention'[active_customers])
+		formatString: 0
+		lineageTag: 37c26b79-3ffb-44f1-bd1c-7c164596db89
+
+	measure 'Won Deals' =
+			
+			CALCULATE(
+			    COUNTROWS('public opportunities'),
+			    'public opportunities'[is_won] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 66e88fe4-917a-4c93-baa2-6dfc7149904f
+
+	measure 'Lost Deals' =
+			
+			CALCULATE(
+			    COUNTROWS('public opportunities'),
+			    'public opportunities'[is_won] = FALSE()
+			)
+		formatString: 0
+		lineageTag: 50d055fe-d257-48c8-af4e-d354d97f9ccd
+
+	measure 'Opportunity Win Rate' = DIVIDE([Won Opportunities], [Won Opportunities] + [Lost Deals])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fbfc2f6f-73ac-44b2-9f4d-0b1067c9a151
+
+	measure 'Open Opportunities' =
+			
+			CALCULATE(
+			    [Total Opportunities],
+			    NOT('public opportunities'[stage] IN {"Won", "Closed Won", "Lost", "Closed Lost"})
+			)
+		formatString: 0
+		lineageTag: 30188ac4-e589-49fe-ac29-9ad9d590103f
+
+	measure 'Pipeline per Open Opportunity' = DIVIDE([Total Pipeline Value], [Open Opportunities])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ab504c6e-ee33-4cc9-8f1c-b00f003e6fbd
+
+	measure 'Revenue MTD' = TOTALMTD([Total Revenue], 'LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 3358189d-8655-4225-93c8-eda69cf2a176
+
+	measure 'Revenue QTD' = TOTALQTD([Total Revenue], 'LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a3a59d89-ec5e-4b4a-9774-a43e3cda1a90
+
+	measure 'Revenue YTD' = TOTALYTD([Total Revenue], 'LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: bf2978f0-1fd8-4c6b-a4ef-60e8a27b5385
+
+	measure 'Revenue Previous Month' = CALCULATE([Total Revenue], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, MONTH))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7febe500-c33e-4c6c-bcd0-886effb30532
+
+	measure 'Revenue Previous Quarter' = CALCULATE([Total Revenue], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, QUARTER))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: eb344556-3e94-4ccb-80a4-e29da5c6a8f9
+
+	measure 'Revenue Previous Year' = CALCULATE([Total Revenue], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, YEAR))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 10b441eb-a46c-429a-a4cd-2587b0080b6a
+
+	measure 'Revenue MoM Change' = [Total Revenue] - [Revenue Previous Month]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 72149419-bac8-4c7c-a687-97bfe6b959e6
+
+	measure 'Revenue MoM %' = DIVIDE([Revenue MoM Change], [Revenue Previous Month])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6d9dca2c-db30-44e9-8be8-f3f063a3555e
+
+	measure 'Revenue QoQ %' = DIVIDE([Total Revenue] - [Revenue Previous Quarter], [Revenue Previous Quarter])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 592a72a2-4247-47be-a94d-f4ef47d3a6ac
+
+	measure 'Revenue YoY %' = DIVIDE([Total Revenue] - [Revenue Previous Year], [Revenue Previous Year])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 272d7956-6347-48dd-8369-b5db41d76353
+
+	measure 'Orders Previous Month' = CALCULATE([Total Orders], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, MONTH))
+		formatString: 0
+		lineageTag: 89d1ddba-0487-4e33-a76b-6dfe91984648
+
+	measure 'Orders MoM %' = DIVIDE([Total Orders] - [Orders Previous Month], [Orders Previous Month])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 37328ba0-e87f-4d89-a552-0be33835127c
+
+	measure 'Average Order Value Previous Month' = CALCULATE([Average Order Value], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, MONTH))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 3f284001-7483-45ed-b658-a43e256cf8a7
+
+	measure 'Average Order Value MoM %' = DIVIDE([Average Order Value] - [Average Order Value Previous Month], [Average Order Value Previous Month])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 515f2561-646b-4792-8be0-d7683e91d6db
+
+	measure 'Rep Revenue Rank' =
+			
+			RANKX(
+			    ALLSELECTED('public sales_reps'[rep_name]),
+			    [Total Revenue],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		lineageTag: faa93bf0-3e45-4598-8f72-723a9f26d5ad
+
+	measure 'Rep Pipeline Rank' =
+			
+			RANKX(
+			    ALLSELECTED('public sales_reps'[rep_name]),
+			    [Total Pipeline Value],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		lineageTag: a6a99610-2997-4111-8c9c-102f760803dc
+
+	measure 'Revenue Share by Rep' = DIVIDE([Total Revenue], CALCULATE([Total Revenue], ALLSELECTED('public sales_reps'[rep_name])))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3ede1ccd-487b-469b-adc5-053c57228610
+
+	measure 'Pipeline Share by Rep' = DIVIDE([Total Pipeline Value], CALCULATE([Total Pipeline Value], ALLSELECTED('public sales_reps'[rep_name])))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ef065b19-afbb-4189-bc26-88ec3d5a5648
+
+	measure 'Rep Performance Score' =
+			
+			VAR MaxRevenue =
+			    MAXX(ALLSELECTED('public sales_reps'[rep_name]), [Total Revenue])
+			VAR MaxPipeline =
+			    MAXX(ALLSELECTED('public sales_reps'[rep_name]), [Total Pipeline Value])
+			VAR MaxAOV =
+			    MAXX(ALLSELECTED('public sales_reps'[rep_name]), [Average Order Value])
+			RETURN
+			    (0.45 * DIVIDE([Total Revenue], MaxRevenue))
+			    + (0.25 * [Opportunity Win Rate])
+			    + (0.20 * DIVIDE([Total Pipeline Value], MaxPipeline))
+			    + (0.10 * DIVIDE([Average Order Value], MaxAOV))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4ba58c6d-96d7-4523-a52e-8159515a4f7b
+
+	measure 'Rep Performance Tier' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Rep Performance Score] >= 0.80, "Elite",
+			    [Rep Performance Score] >= 0.60, "Strong",
+			    [Rep Performance Score] >= 0.40, "Developing",
+			    "Needs Focus"
+			)
+		lineageTag: d3393055-6983-4240-a17a-d4b432fe5789
+
+	column Column1
+		dataType: int64
+		formatString: 0
+		lineageTag: 3012d994-1556-4719-a073-c54f7ad27151
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Revenue_measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

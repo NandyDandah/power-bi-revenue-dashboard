@@ -1,0 +1,8 @@
+// Welcome to DAX query view! Learn more about DAX queries at https://aka.ms/dax-queries.
+// Right-click on tables, columns, or measures in the data pane to access quick queries, or ask Copilot for help writing DAX.
+customers[customer_id] 1 → many orders[customer_id]
+products[product_id] 1 → many orders[product_id]
+sales_reps[rep_id] 1 → many orders[rep_id]
+customers[customer_id] 1 → many opportunities[customer_id]
+sales_reps[rep_id] 1 → many opportunities[rep_id]
+opportunities[opportunity_id] 1 → many sales_activities[opportunity_id]

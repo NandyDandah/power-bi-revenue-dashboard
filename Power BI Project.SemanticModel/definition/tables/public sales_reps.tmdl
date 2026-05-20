@@ -1,0 +1,47 @@
+table 'public sales_reps'
+	lineageTag: 7a35f8e8-266b-4af6-b5f0-0e87f1283c87
+
+	column rep_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4135cf2b-ab4b-4d00-aa18-bc703ed00473
+		summarizeBy: none
+		sourceColumn: rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rep_name
+		dataType: string
+		lineageTag: 24af3cc4-8ba6-4ad6-a935-04a5bc195e3c
+		summarizeBy: none
+		sourceColumn: rep_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: string
+		lineageTag: dcea0f0a-aeaa-417c-b801-f727b9f968f5
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 11717174-65c5-410b-8e5c-e0d65dfe755a
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public sales_reps' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
+				    public_sales_reps = Source{[Schema="public",Item="sales_reps"]}[Data]
+				in
+				    public_sales_reps
+
+	annotation PBI_ResultType = Table
+
