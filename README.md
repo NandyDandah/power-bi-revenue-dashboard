@@ -4,8 +4,8 @@ Professional Power BI revenue analytics project built to show executive reportin
 
 ## Project Contents
 
-- `Revenue Performance Dashboard.pbix` - main Power BI dashboard file.
-- `Power BI Project.pbip` - editable Power BI Project file.
+- `Power BI Project.pbip` - publish-ready editable Power BI Project file.
+- `Revenue Performance Dashboard.pbix` - packaged dashboard copy.
 - `Power BI Project.Report/` - report page and visual definitions.
 - `Power BI Project.SemanticModel/` - semantic model, relationships, tables, and DAX measures.
 - `SQL/` - PostgreSQL setup scripts for tables, sample data, and reporting views.
@@ -50,9 +50,9 @@ Professional Power BI revenue analytics project built to show executive reportin
 
 ## How To Review
 
-1. Open `Power BI Project.pbip` in Power BI Desktop for the editable report project.
+1. Open `Power BI Project.pbip` in Power BI Desktop for the publish-ready report project.
 2. Review the four report pages and the `Revenue_measures` table.
-3. Use `Revenue Performance Dashboard.pbix` as the packaged dashboard deliverable.
+3. Publish from the PBIP in Power BI Desktop, or use `Revenue Performance Dashboard.pbix` as the packaged dashboard copy.
 4. Read `PROJECT_SKILLS.md` for a concise portfolio explanation.
 
 ## PostgreSQL Setup

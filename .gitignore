@@ -1,6 +1,7 @@
 pbix_unpacked/
 pbix_current_check/
 pbix_repack_normalize/
+_pbix_publish_check/
 Project Assets/
 *.corrupted-backup.pbix
 *.lnk
