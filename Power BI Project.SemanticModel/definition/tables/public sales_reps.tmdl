@@ -37,11 +37,10 @@ table 'public sales_reps'
 	partition 'public sales_reps' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_sales_reps = Source{[Schema="public",Item="sales_reps"]}[Data]
-				in
-				    public_sales_reps
+				#table(
+				    type table [rep_id = Int64.Type, rep_name = text, team = text, region = text],
+				    {{1, "Maya Chen", "Enterprise", "North"}, {2, "Jordan Smith", "Growth", "South"}, {3, "Priya Patel", "Enterprise", "West"}, {4, "Andre Johnson", "Growth", "East"}}
+				)
 
 	annotation PBI_ResultType = Table
 

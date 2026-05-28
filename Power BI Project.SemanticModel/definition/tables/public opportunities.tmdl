@@ -69,9 +69,13 @@ table 'public opportunities'
 	partition 'public opportunities' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_opportunities = Source{[Schema="public",Item="opportunities"]}[Data]
-				in
-				    public_opportunities
-
+				#table(
+				    type table [opportunity_id = Int64.Type, customer_id = Int64.Type, rep_id = Int64.Type, created_date = datetime, stage = text, estimated_value = number, is_won = logical],
+				    {
+				        {2001, 1, 1, #datetime(2025, 1, 5, 0, 0, 0), "Closed Won", 24000.00, true}, {2002, 2, 2, #datetime(2025, 1, 18, 0, 0, 0), "Closed Won", 19000.00, true},
+				        {2003, 3, 3, #datetime(2025, 2, 2, 0, 0, 0), "Negotiation", 32000.00, false}, {2004, 4, 4, #datetime(2025, 2, 11, 0, 0, 0), "Proposal", 21000.00, false},
+				        {2005, 5, 1, #datetime(2025, 3, 1, 0, 0, 0), "Closed Lost", 9000.00, false}, {2006, 6, 4, #datetime(2025, 3, 13, 0, 0, 0), "Closed Won", 33000.00, true},
+				        {2007, 7, 3, #datetime(2025, 4, 1, 0, 0, 0), "Discovery", 15000.00, false}, {2008, 8, 2, #datetime(2025, 4, 21, 0, 0, 0), "Proposal", 12500.00, false},
+				        {2009, 1, 1, #datetime(2025, 5, 3, 0, 0, 0), "Negotiation", 25000.00, false}, {2010, 6, 4, #datetime(2025, 6, 1, 0, 0, 0), "Closed Won", 18000.00, true}
+				    }
+				)

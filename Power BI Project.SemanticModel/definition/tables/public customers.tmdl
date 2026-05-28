@@ -53,9 +53,16 @@ table 'public customers'
 	partition 'public customers' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_customers = Source{[Schema="public",Item="customers"]}[Data]
-				in
-				    public_customers
-
+				#table(
+				    type table [customer_id = Int64.Type, customer_name = text, segment = text, region = text, signup_date = datetime],
+				    {
+				        {1, "Apex Retail Group", "Enterprise", "North", #datetime(2024, 1, 12, 0, 0, 0)},
+				        {2, "Brightway Services", "Mid-Market", "South", #datetime(2024, 2, 3, 0, 0, 0)},
+				        {3, "Cobalt Manufacturing", "Enterprise", "West", #datetime(2024, 2, 25, 0, 0, 0)},
+				        {4, "Delta Health Partners", "Mid-Market", "East", #datetime(2024, 3, 19, 0, 0, 0)},
+				        {5, "Evergreen Logistics", "SMB", "North", #datetime(2024, 4, 8, 0, 0, 0)},
+				        {6, "Futura Finance", "Enterprise", "East", #datetime(2024, 4, 21, 0, 0, 0)},
+				        {7, "Granite Labs", "SMB", "West", #datetime(2024, 5, 11, 0, 0, 0)},
+				        {8, "Harbor Foods", "Mid-Market", "South", #datetime(2024, 5, 29, 0, 0, 0)}
+				    }
+				)

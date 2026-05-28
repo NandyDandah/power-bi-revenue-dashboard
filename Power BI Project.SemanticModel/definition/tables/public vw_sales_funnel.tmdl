@@ -50,11 +50,10 @@ table 'public vw_sales_funnel'
 	partition 'public vw_sales_funnel' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_vw_sales_funnel = Source{[Schema="public",Item="vw_sales_funnel"]}[Data]
-				in
-				    public_vw_sales_funnel
+				#table(
+				    type table [stage = text, opportunity_count = Int64.Type, pipeline_value = number, won_count = Int64.Type, stage_win_rate = number],
+				    {{"Closed Won", 4, 94000.00, 4, 1.00}, {"Negotiation", 2, 57000.00, 0, 0.00}, {"Proposal", 2, 33500.00, 0, 0.00}, {"Discovery", 1, 15000.00, 0, 0.00}, {"Closed Lost", 1, 9000.00, 0, 0.00}}
+				)
 
 	annotation PBI_ResultType = Table
 

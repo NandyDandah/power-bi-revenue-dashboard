@@ -66,11 +66,10 @@ table 'public vw_rep_performance'
 	partition 'public vw_rep_performance' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_vw_rep_performance = Source{[Schema="public",Item="vw_rep_performance"]}[Data]
-				in
-				    public_vw_rep_performance
+				#table(
+				    type table [rep_name = text, team = text, region = text, total_orders = Int64.Type, total_revenue = number, avg_order_value = number, unique_customers = Int64.Type],
+				    {{"Andre Johnson", "Growth", "East", 3, 71690.00, 23896.67, 2}, {"Jordan Smith", "Growth", "South", 3, 57045.00, 19015.00, 2}, {"Maya Chen", "Enterprise", "North", 3, 50350.00, 16783.33, 2}, {"Priya Patel", "Enterprise", "West", 3, 43650.00, 14550.00, 2}}
+				)
 
 	annotation PBI_ResultType = Table
 

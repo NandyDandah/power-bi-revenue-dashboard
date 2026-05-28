@@ -39,11 +39,10 @@ table 'public products'
 	partition 'public products' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_products = Source{[Schema="public",Item="products"]}[Data]
-				in
-				    public_products
+				#table(
+				    type table [product_id = Int64.Type, product_name = text, category = text, unit_price = number],
+				    {{1, "Revenue Intelligence Suite", "Analytics", 18000.00}, {2, "Customer Retention Module", "Analytics", 9500.00}, {3, "Pipeline Forecasting Add-on", "Forecasting", 12500.00}, {4, "Sales Productivity Pack", "Operations", 7200.00}}
+				)
 
 	annotation PBI_ResultType = Table
 

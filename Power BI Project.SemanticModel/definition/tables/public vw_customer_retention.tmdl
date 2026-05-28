@@ -48,9 +48,7 @@ table 'public vw_customer_retention'
 	partition 'public vw_customer_retention' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_vw_customer_retention = Source{[Schema="public",Item="vw_customer_retention"]}[Data]
-				in
-				    public_vw_customer_retention
-
+				#table(
+				    type table [order_month = datetime, active_customers = Int64.Type, retained_customers = Int64.Type, retention_rate = number],
+				    {{#datetime(2025, 1, 1, 0, 0, 0), 2, 0, 0.00}, {#datetime(2025, 2, 1, 0, 0, 0), 2, 0, 0.00}, {#datetime(2025, 3, 1, 0, 0, 0), 2, 0, 0.00}, {#datetime(2025, 4, 1, 0, 0, 0), 2, 0, 0.00}, {#datetime(2025, 5, 1, 0, 0, 0), 2, 0, 0.00}, {#datetime(2025, 6, 1, 0, 0, 0), 2, 0, 0.00}}
+				)

@@ -85,11 +85,17 @@ table 'public orders'
 	partition 'public orders' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_orders = Source{[Schema="public",Item="orders"]}[Data]
-				in
-				    public_orders
+				#table(
+				    type table [order_id = Int64.Type, customer_id = Int64.Type, product_id = Int64.Type, rep_id = Int64.Type, order_date = datetime, quantity = Int64.Type, discount = number, revenue = number],
+				    {
+				        {1001, 1, 1, 1, #datetime(2025, 1, 15, 0, 0, 0), 1, 0.05, 17100.00}, {1002, 2, 2, 2, #datetime(2025, 1, 22, 0, 0, 0), 2, 0.00, 19000.00},
+				        {1003, 3, 3, 3, #datetime(2025, 2, 8, 0, 0, 0), 1, 0.10, 11250.00}, {1004, 4, 4, 4, #datetime(2025, 2, 19, 0, 0, 0), 3, 0.05, 20520.00},
+				        {1005, 5, 2, 1, #datetime(2025, 3, 3, 0, 0, 0), 1, 0.00, 9500.00}, {1006, 6, 1, 4, #datetime(2025, 3, 17, 0, 0, 0), 2, 0.08, 33120.00},
+				        {1007, 7, 4, 3, #datetime(2025, 4, 6, 0, 0, 0), 2, 0.00, 14400.00}, {1008, 8, 3, 2, #datetime(2025, 4, 26, 0, 0, 0), 1, 0.03, 12125.00},
+				        {1009, 1, 3, 1, #datetime(2025, 5, 9, 0, 0, 0), 2, 0.05, 23750.00}, {1010, 3, 1, 3, #datetime(2025, 5, 20, 0, 0, 0), 1, 0.00, 18000.00},
+				        {1011, 6, 2, 4, #datetime(2025, 6, 4, 0, 0, 0), 2, 0.05, 18050.00}, {1012, 2, 4, 2, #datetime(2025, 6, 18, 0, 0, 0), 4, 0.10, 25920.00}
+				    }
+				)
 
 	annotation PBI_ResultType = Table
 

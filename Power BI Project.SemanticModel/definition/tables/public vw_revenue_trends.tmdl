@@ -58,11 +58,10 @@ table 'public vw_revenue_trends'
 	partition 'public vw_revenue_trends' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_vw_revenue_trends = Source{[Schema="public",Item="vw_revenue_trends"]}[Data]
-				in
-				    public_vw_revenue_trends
+				#table(
+				    type table [month = datetime, total_revenue = number, total_orders = Int64.Type, active_customers = Int64.Type, avg_order_value = number],
+				    {{#datetime(2025, 1, 1, 0, 0, 0), 36100.00, 2, 2, 18050.00}, {#datetime(2025, 2, 1, 0, 0, 0), 31770.00, 2, 2, 15885.00}, {#datetime(2025, 3, 1, 0, 0, 0), 42620.00, 2, 2, 21310.00}, {#datetime(2025, 4, 1, 0, 0, 0), 26525.00, 2, 2, 13262.50}, {#datetime(2025, 5, 1, 0, 0, 0), 41750.00, 2, 2, 20875.00}, {#datetime(2025, 6, 1, 0, 0, 0), 43970.00, 2, 2, 21985.00}}
+				)
 
 	annotation PBI_ResultType = Table
 

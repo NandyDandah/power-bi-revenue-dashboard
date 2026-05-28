@@ -42,11 +42,10 @@ table 'public vw_kpi_summary'
 	partition 'public vw_kpi_summary' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_vw_kpi_summary = Source{[Schema="public",Item="vw_kpi_summary"]}[Data]
-				in
-				    public_vw_kpi_summary
+				#table(
+				    type table [total_revenue = number, total_orders = Int64.Type, total_customers = Int64.Type, avg_order_value = number],
+				    {{222735.00, 12, 8, 18561.25}}
+				)
 
 	annotation PBI_ResultType = Table
 

@@ -46,11 +46,10 @@ table 'public sales_activities'
 	partition 'public sales_activities' = m
 		mode: import
 		source =
-				let
-				    Source = PostgreSQL.Database("localhost", "revenue_dashboard"),
-				    public_sales_activities = Source{[Schema="public",Item="sales_activities"]}[Data]
-				in
-				    public_sales_activities
+				#table(
+				    type table [activity_id = Int64.Type, opportunity_id = Int64.Type, activity_date = datetime, activity_type = text],
+				    {{3001, 2001, #datetime(2025, 1, 6, 0, 0, 0), "Discovery Call"}, {3002, 2001, #datetime(2025, 1, 10, 0, 0, 0), "Proposal Sent"}, {3003, 2002, #datetime(2025, 1, 20, 0, 0, 0), "Demo"}, {3004, 2003, #datetime(2025, 2, 5, 0, 0, 0), "Executive Meeting"}, {3005, 2004, #datetime(2025, 2, 13, 0, 0, 0), "Proposal Sent"}, {3006, 2006, #datetime(2025, 3, 15, 0, 0, 0), "Contract Review"}, {3007, 2007, #datetime(2025, 4, 4, 0, 0, 0), "Discovery Call"}, {3008, 2008, #datetime(2025, 4, 24, 0, 0, 0), "Demo"}, {3009, 2009, #datetime(2025, 5, 7, 0, 0, 0), "Negotiation"}, {3010, 2010, #datetime(2025, 6, 3, 0, 0, 0), "Contract Signed"}}
+				)
 
 	annotation PBI_ResultType = Table
 
