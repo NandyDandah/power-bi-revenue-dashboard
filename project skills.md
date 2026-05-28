@@ -24,6 +24,7 @@ Create an executive-ready Power BI dashboard that helps a revenue team monitor s
 - Built as a Power BI Project (`.pbip`) so the report and semantic model are version-control friendly.
 - Added advanced DAX measures for MTD, QTD, YTD, MoM, QoQ, YoY, rank, contribution share, and rep scoring.
 - Organized measures in `Revenue_measures` for easier review and maintenance.
+- Added SQL scripts for PostgreSQL tables, sample data, and analytic views.
 - Added professional light/dark JSON themes for polished presentation.
 - Preserved source-table relationships across customers, products, sales reps, orders, opportunities, and activities.
 

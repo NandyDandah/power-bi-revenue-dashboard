@@ -77,7 +77,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pipeline Value by Stage'"
+                  "Value": "'Pipeline Value by stage'"
                 }
               }
             }
