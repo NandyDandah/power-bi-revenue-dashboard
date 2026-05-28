@@ -110,7 +110,7 @@ table LocalDateTable_fc6ef7d6-1bab-40db-9fee-aff4c70cbbbd
 
 	partition LocalDateTable_fc6ef7d6-1bab-40db-9fee-aff4c70cbbbd = calculated
 		mode: import
-		source = Calendar(Date(Year(MIN('public vw_customer_retention'[order_month])), 1, 1), Date(Year(MAX('public vw_customer_retention'[order_month])), 12, 31))
+		source = Calendar(Date(2024, 1, 1), Date(2025, 12, 31))
 
 	annotation __PBI_LocalDateTable = true
 
