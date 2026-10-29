@@ -1,6 +1,10 @@
 # Revenue Performance Dashboard
 
-Professional Power BI revenue analytics project built to show executive reporting, sales funnel analysis, customer retention, and sales representative performance. The project is structured as a publish-ready PBIP source project, making it easy to review the report, inspect the semantic model, and evaluate the DAX/report-building work.
+Power BI portfolio project exploring revenue performance, customer retention, sales pipeline, and sales representative contribution. Four report pages use a consistent KPI strip, aligned chart grid, and dedicated filter area.
+
+**Power BI | DAX | PostgreSQL | Sales analytics**
+
+The editable report uses embedded demonstration data. PostgreSQL scripts are included separately for reviewing the database design. GitHub displays static images; open the complete PBIP project in Power BI Desktop to interact with the report.
 
 ## Project Contents
 
@@ -11,7 +15,9 @@ Professional Power BI revenue analytics project built to show executive reportin
 - `screenshots/` - dashboard page previews for GitHub and recruiter review.
 - `PROJECT_SKILLS.md` - portfolio summary for recruiters and hiring managers.
 
-## Dashboard Preview
+## Illustrative Previews
+
+These existing images are illustrative portfolio previews, not screenshots of the current Power BI report. The updated report layout must be refreshed and captured in Power BI Desktop before replacing them with verified screenshots.
 
 ![Executive Overview](screenshots/executive-overview.png)
 
@@ -49,9 +55,9 @@ Professional Power BI revenue analytics project built to show executive reportin
 
 ## How To Review
 
-1. Open `Power BI Project.pbip` in Power BI Desktop for the publish-ready report project.
+1. Download the complete repository and open `Power BI Project.pbip` in Power BI Desktop. Keep the Report and SemanticModel folders beside it.
 2. Review the four report pages and the `Revenue_measures` table.
-3. Publish directly from the PBIP in Power BI Desktop.
+3. Refresh and inspect all four pages in Desktop before publishing to your Power BI workspace.
 4. Read `PROJECT_SKILLS.md` for a concise portfolio explanation.
 
 ## PostgreSQL Setup

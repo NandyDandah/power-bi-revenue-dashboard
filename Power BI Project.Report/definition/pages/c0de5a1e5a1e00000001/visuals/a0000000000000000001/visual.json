@@ -3,10 +3,10 @@
   "name": "a0000000000000000001",
   "position": {
     "x": 32,
-    "y": 20,
+    "y": 24,
     "z": 0,
-    "height": 54,
-    "width": 720,
+    "height": 56,
+    "width": 1216,
     "tabOrder": 0
   },
   "visual": {
@@ -21,8 +21,10 @@
                   {
                     "value": "Sales Rep Performance",
                     "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "28pt"
+                      "fontSize": "24pt",
+                      "fontFamily": "Segoe UI",
+                      "color": "#202B35",
+                      "fontWeight": "bold"
                     }
                   }
                 ]

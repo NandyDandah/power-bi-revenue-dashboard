@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "position": {
+    "z": 0,
+    "width": 1216,
+    "x": 32,
+    "height": 56,
+    "tabOrder": 0,
+    "y": 24
+  },
+  "name": "portfolioPageHeading",
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "textStyle": {
+                      "fontSize": "24pt",
+                      "fontFamily": "Segoe UI",
+                      "color": "#202B35",
+                      "fontWeight": "bold"
+                    },
+                    "value": "Sales Funnel"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

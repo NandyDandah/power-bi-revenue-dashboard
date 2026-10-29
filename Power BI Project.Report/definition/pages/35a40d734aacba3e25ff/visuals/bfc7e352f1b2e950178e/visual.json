@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "bfc7e352f1b2e950178e",
   "position": {
-    "x": 63.333333333333329,
-    "y": 37.777777777777779,
+    "x": 32,
+    "y": 24,
     "z": 6000,
-    "height": 67.777777777777771,
-    "width": 980,
+    "height": 56,
+    "width": 1216,
     "tabOrder": 6000
   },
   "visual": {
@@ -21,8 +21,10 @@
                   {
                     "value": "Revenue Performance Dashboard",
                     "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "32pt"
+                      "fontSize": "24pt",
+                      "fontFamily": "Segoe UI",
+                      "color": "#202B35",
+                      "fontWeight": "bold"
                     }
                   }
                 ],

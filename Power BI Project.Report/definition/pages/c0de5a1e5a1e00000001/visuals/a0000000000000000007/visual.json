@@ -3,10 +3,10 @@
   "name": "a0000000000000000007",
   "position": {
     "x": 32,
-    "y": 220,
+    "y": 232.0,
     "z": 2000,
-    "height": 244,
-    "width": 520,
+    "height": 220.0,
+    "width": 476,
     "tabOrder": 2000
   },
   "visual": {
@@ -110,6 +110,61 @@
               "expr": {
                 "Literal": {
                   "Value": "'Revenue by Sales Rep'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DFE5EC'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
