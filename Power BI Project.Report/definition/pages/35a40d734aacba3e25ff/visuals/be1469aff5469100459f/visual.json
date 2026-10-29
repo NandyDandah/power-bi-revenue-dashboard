@@ -5,7 +5,7 @@
     "x": 32,
     "y": 232.0,
     "z": 7000,
-    "height": 456.0,
+    "height": 240,
     "width": 1216,
     "tabOrder": 7000
   },
@@ -17,107 +17,18 @@
           "projections": [
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "public orders"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "order_date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
+                    "SourceRef": {
+                      "Entity": "public vw_revenue_trends"
                     }
                   },
-                  "Level": "Year"
+                  "Property": "month"
                 }
               },
-              "queryRef": "public orders.order_date.Variation.Date Hierarchy.Year",
-              "nativeQueryRef": "order_date Year",
+              "queryRef": "public vw_revenue_trends.month",
+              "nativeQueryRef": "month",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "public orders"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "order_date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Quarter"
-                }
-              },
-              "queryRef": "public orders.order_date.Variation.Date Hierarchy.Quarter",
-              "nativeQueryRef": "order_date Quarter",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "public orders"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "order_date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Month"
-                }
-              },
-              "queryRef": "public orders.order_date.Variation.Date Hierarchy.Month",
-              "nativeQueryRef": "order_date Month",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "public orders"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "order_date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Day"
-                }
-              },
-              "queryRef": "public orders.order_date.Variation.Date Hierarchy.Day",
-              "nativeQueryRef": "order_date Day",
-              "active": false
             }
           ]
         },
@@ -130,20 +41,37 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "public orders"
+                          "Entity": "public vw_revenue_trends"
                         }
                       },
-                      "Property": "revenue"
+                      "Property": "total_revenue"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(public orders.revenue)",
-              "nativeQueryRef": "Sum of revenue"
+              "queryRef": "public vw_revenue_trends.value",
+              "nativeQueryRef": "Revenue"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "public vw_revenue_trends"
+                  }
+                },
+                "Property": "month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
       }
     },
     "visualContainerObjects": {
@@ -153,7 +81,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Revenue Trend Overtime'"
+                  "Value": "'Monthly revenue | 2024-2025'"
                 }
               }
             }

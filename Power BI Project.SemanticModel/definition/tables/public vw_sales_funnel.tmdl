@@ -50,10 +50,13 @@ table 'public vw_sales_funnel'
 	partition 'public vw_sales_funnel' = m
 		mode: import
 		source =
-				#table(
-				    type table [stage = text, opportunity_count = Int64.Type, pipeline_value = number, won_count = Int64.Type, stage_win_rate = number],
-				    {{"Closed Won", 4, 94000.00, 4, 1.00}, {"Negotiation", 2, 57000.00, 0, 0.00}, {"Proposal", 2, 33500.00, 0, 0.00}, {"Discovery", 1, 15000.00, 0, 0.00}, {"Closed Lost", 1, 9000.00, 0, 0.00}}
-				)
+				#table(type table [stage = text, opportunity_count = Int64.Type, pipeline_value = number, won_count = Int64.Type, stage_win_rate = number], {
+				    {"Discovery", 159, 8440000, 0, 0.0},
+				    {"Proposal", 149, 7490000, 0, 0.0},
+				    {"Negotiation", 101, 5097000, 0, 0.0},
+				    {"Closed Won", 427, 21836000, 427, 1.0},
+				    {"Closed Lost", 244, 12568000, 0, 0.0}
+				})
 
 	annotation PBI_ResultType = Table
 

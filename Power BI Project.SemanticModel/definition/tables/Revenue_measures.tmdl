@@ -2,7 +2,7 @@ table Revenue_measures
 	lineageTag: af209064-157d-48ec-8779-f297b48678b5
 
 	measure 'Total Revenue' = SUM('public orders'[revenue])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: bf67eecb-f6fc-47e4-adfe-77b0008b853f
 
 	measure 'Total Orders' = COUNTROWS('public orders')
@@ -14,7 +14,7 @@ table Revenue_measures
 		lineageTag: d357dc81-9926-4ddd-b0ef-ed6d3e33032f
 
 	measure 'Average Order Value' = DIVIDE([Total Revenue], [Total Orders])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 6d49e2cc-9d84-4370-8257-47cc8e6f1276
 
 	measure 'Total Opportunities' = COUNTROWS('public opportunities')
@@ -34,12 +34,12 @@ table Revenue_measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: dd3b6ae4-ca85-44c7-b234-5a9d40882f99
 
-	measure 'Total Pipeline Value' = SUM('public opportunities'[estimated_value])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+	measure 'Total Pipeline Value' = CALCULATE(SUM('public opportunities'[estimated_value]), NOT('public opportunities'[stage] IN {"Closed Won", "Closed Lost"}))
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 0da4c3dc-3a50-4ce8-931a-1de73b5136cf
 
-	measure 'Revenue Target' = 750000
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+	measure 'Revenue Target' = 65000000
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: d6c210e3-5990-4cd2-954f-4193d611603d
 
 	measure 'Revenue Target Achievement' = DIVIDE([Total Revenue], [Revenue Target])
@@ -52,7 +52,7 @@ table Revenue_measures
 
 	measure 'Monthly Active Customers' =
 			
-			SUM('public vw_customer_retention'[active_customers])
+			AVERAGE('public vw_customer_retention'[active_customers])
 		formatString: 0
 		lineageTag: 37c26b79-3ffb-44f1-bd1c-7c164596db89
 
@@ -69,7 +69,7 @@ table Revenue_measures
 			
 			CALCULATE(
 			    COUNTROWS('public opportunities'),
-			    'public opportunities'[is_won] = FALSE()
+			    'public opportunities'[stage] = "Closed Lost"
 			)
 		formatString: 0
 		lineageTag: 50d055fe-d257-48c8-af4e-d354d97f9ccd
@@ -88,35 +88,35 @@ table Revenue_measures
 		lineageTag: 30188ac4-e589-49fe-ac29-9ad9d590103f
 
 	measure 'Pipeline per Open Opportunity' = DIVIDE([Total Pipeline Value], [Open Opportunities])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: ab504c6e-ee33-4cc9-8f1c-b00f003e6fbd
 
 	measure 'Revenue MTD' = TOTALMTD([Total Revenue], 'LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 3358189d-8655-4225-93c8-eda69cf2a176
 
 	measure 'Revenue QTD' = TOTALQTD([Total Revenue], 'LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: a3a59d89-ec5e-4b4a-9774-a43e3cda1a90
 
 	measure 'Revenue YTD' = TOTALYTD([Total Revenue], 'LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: bf2978f0-1fd8-4c6b-a4ef-60e8a27b5385
 
 	measure 'Revenue Previous Month' = CALCULATE([Total Revenue], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, MONTH))
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 7febe500-c33e-4c6c-bcd0-886effb30532
 
 	measure 'Revenue Previous Quarter' = CALCULATE([Total Revenue], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, QUARTER))
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: eb344556-3e94-4ccb-80a4-e29da5c6a8f9
 
 	measure 'Revenue Previous Year' = CALCULATE([Total Revenue], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, YEAR))
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 10b441eb-a46c-429a-a4cd-2587b0080b6a
 
 	measure 'Revenue MoM Change' = [Total Revenue] - [Revenue Previous Month]
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 72149419-bac8-4c7c-a687-97bfe6b959e6
 
 	measure 'Revenue MoM %' = DIVIDE([Revenue MoM Change], [Revenue Previous Month])
@@ -140,7 +140,7 @@ table Revenue_measures
 		lineageTag: 37328ba0-e87f-4d89-a552-0be33835127c
 
 	measure 'Average Order Value Previous Month' = CALCULATE([Average Order Value], DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, MONTH))
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 3f284001-7483-45ed-b658-a43e256cf8a7
 
 	measure 'Average Order Value MoM %' = DIVIDE([Average Order Value] - [Average Order Value Previous Month], [Average Order Value Previous Month])

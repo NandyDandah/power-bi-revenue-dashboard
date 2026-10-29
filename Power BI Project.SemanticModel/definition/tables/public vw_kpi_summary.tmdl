@@ -42,10 +42,9 @@ table 'public vw_kpi_summary'
 	partition 'public vw_kpi_summary' = m
 		mode: import
 		source =
-				#table(
-				    type table [total_revenue = number, total_orders = Int64.Type, total_customers = Int64.Type, avg_order_value = number],
-				    {{222735.00, 12, 8, 18561.25}}
-				)
+				#table(type table [total_revenue = number, total_orders = Int64.Type, total_customers = Int64.Type, avg_order_value = number], {
+				    {62119409.0, 2232, 120, 27831.28}
+				})
 
 	annotation PBI_ResultType = Table
 

@@ -20,21 +20,6 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "public customers"
-                    }
-                  },
-                  "Property": "region"
-                }
-              },
-              "queryRef": "public customers.region",
-              "nativeQueryRef": "region",
-              "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
                       "Entity": "public opportunities"
                     }
                   },
@@ -43,22 +28,7 @@
               },
               "queryRef": "public opportunities.stage",
               "nativeQueryRef": "stage",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "public sales_reps"
-                    }
-                  },
-                  "Property": "rep_name"
-                }
-              },
-              "queryRef": "public sales_reps.rep_name",
-              "nativeQueryRef": "rep_name",
-              "active": false
+              "active": true
             }
           ]
         }

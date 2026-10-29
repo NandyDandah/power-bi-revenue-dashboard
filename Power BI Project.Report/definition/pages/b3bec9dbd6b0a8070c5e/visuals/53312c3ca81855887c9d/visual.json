@@ -29,36 +29,6 @@
               "queryRef": "public customers.region",
               "nativeQueryRef": "region",
               "active": true
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "public customers"
-                    }
-                  },
-                  "Property": "segment"
-                }
-              },
-              "queryRef": "public customers.segment",
-              "nativeQueryRef": "segment",
-              "active": false
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "public orders"
-                    }
-                  },
-                  "Property": "order_date"
-                }
-              },
-              "queryRef": "public orders.order_date",
-              "nativeQueryRef": "order_date",
-              "active": false
             }
           ]
         }

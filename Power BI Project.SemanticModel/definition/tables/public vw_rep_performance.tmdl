@@ -66,10 +66,16 @@ table 'public vw_rep_performance'
 	partition 'public vw_rep_performance' = m
 		mode: import
 		source =
-				#table(
-				    type table [rep_name = text, team = text, region = text, total_orders = Int64.Type, total_revenue = number, avg_order_value = number, unique_customers = Int64.Type],
-				    {{"Andre Johnson", "Growth", "East", 3, 71690.00, 23896.67, 2}, {"Jordan Smith", "Growth", "South", 3, 57045.00, 19015.00, 2}, {"Maya Chen", "Enterprise", "North", 3, 50350.00, 16783.33, 2}, {"Priya Patel", "Enterprise", "West", 3, 43650.00, 14550.00, 2}}
-				)
+				#table(type table [rep_name = text, team = text, region = text, total_orders = Int64.Type, total_revenue = number, avg_order_value = number, unique_customers = Int64.Type], {
+				    {"Maya Chen", "Enterprise", "North", 291, 8114931.0, 27886.36, 110},
+				    {"Jordan Smith", "Growth", "South", 277, 7685432.0, 27745.24, 102},
+				    {"Priya Patel", "Enterprise", "West", 272, 7401051.0, 27209.75, 108},
+				    {"Andre Johnson", "Growth", "East", 264, 7698465.0, 29160.85, 108},
+				    {"Alex Morgan", "Growth", "North", 305, 8412893.0, 27583.26, 109},
+				    {"Sam Rivera", "Enterprise", "South", 258, 6861235.0, 26593.93, 105},
+				    {"Taylor Brooks", "Growth", "West", 278, 7442967.0, 26773.26, 107},
+				    {"Robin Lee", "Enterprise", "East", 287, 8502435.0, 29625.21, 111}
+				})
 
 	annotation PBI_ResultType = Table
 

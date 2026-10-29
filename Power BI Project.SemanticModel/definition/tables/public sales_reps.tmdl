@@ -37,10 +37,16 @@ table 'public sales_reps'
 	partition 'public sales_reps' = m
 		mode: import
 		source =
-				#table(
-				    type table [rep_id = Int64.Type, rep_name = text, team = text, region = text],
-				    {{1, "Maya Chen", "Enterprise", "North"}, {2, "Jordan Smith", "Growth", "South"}, {3, "Priya Patel", "Enterprise", "West"}, {4, "Andre Johnson", "Growth", "East"}}
-				)
+				#table(type table [rep_id = Int64.Type, rep_name = text, team = text, region = text], {
+				    {1, "Maya Chen", "Enterprise", "North"},
+				    {2, "Jordan Smith", "Growth", "South"},
+				    {3, "Priya Patel", "Enterprise", "West"},
+				    {4, "Andre Johnson", "Growth", "East"},
+				    {5, "Alex Morgan", "Growth", "North"},
+				    {6, "Sam Rivera", "Enterprise", "South"},
+				    {7, "Taylor Brooks", "Growth", "West"},
+				    {8, "Robin Lee", "Enterprise", "East"}
+				})
 
 	annotation PBI_ResultType = Table
 
