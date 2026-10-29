@@ -14,7 +14,7 @@ The retention metric represents the share of customers in the selected period wh
 
 After regenerating data with `python advance_project.py`, run `python refine_report.py` to restore the final presentation and filter-aware trend queries. The executive page includes monthly revenue, regional contribution, product rankings, discount analysis and customer segment comparisons.
 
-The expanded dataset was refreshed successfully in Power BI Desktop. The final stage-filter correction for pipeline values still requires a fresh Desktop check.
+The expanded dataset was refreshed successfully in Power BI Desktop. The stage-filter correction was visually verified: pipeline charts display Discovery, Proposal and Negotiation separately and exclude closed opportunities.
 
 The editable report uses embedded demonstration data. PostgreSQL scripts are included separately for reviewing the database design. GitHub displays static images; open the complete PBIP project in Power BI Desktop to interact with the report.
 
@@ -29,11 +29,15 @@ The editable report uses embedded demonstration data. PostgreSQL scripts are inc
 
 ## Dashboard Screenshots
 
-Actual Power BI Desktop captures using the expanded synthetic dataset. Screenshots for the final Sales Funnel and Sales Rep Performance pages are pending verification.
+Actual Power BI Desktop captures using the expanded synthetic dataset and distinct section colors.
 
 ![Executive Overview](screenshots/executive-overview.png)
 
 ![Customer Retention](screenshots/customer-retention.png)
+
+![Sales Funnel](screenshots/sales-funnel.png)
+
+![Sales Rep Performance](screenshots/sales-rep-performance.png)
 
 ## Dashboard Pages
 
