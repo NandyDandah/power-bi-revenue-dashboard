@@ -34,7 +34,7 @@ table Revenue_measures
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: dd3b6ae4-ca85-44c7-b234-5a9d40882f99
 
-	measure 'Total Pipeline Value' = CALCULATE(SUM('public opportunities'[estimated_value]), NOT('public opportunities'[stage] IN {"Closed Won", "Closed Lost"}))
+	measure 'Total Pipeline Value' = CALCULATE(SUM('public opportunities'[estimated_value]), KEEPFILTERS(NOT('public opportunities'[stage] IN {"Closed Won", "Closed Lost"})))
 		formatString: \$#,0;(\$#,0);\$0
 		lineageTag: 0da4c3dc-3a50-4ce8-931a-1de73b5136cf
 
@@ -46,13 +46,11 @@ table Revenue_measures
 		formatString: #,0.00%;-#,0.00%;#,0.00%
 		lineageTag: 3a370828-1276-4274-bd19-fdab8d8221db
 
-	measure 'Retention Rate' = AVERAGE('public vw_customer_retention'[retention_rate])
+	measure 'Retention Rate' = VAR CurrentCustomers = VALUES('public orders'[customer_id]) VAR PriorCustomers = CALCULATETABLE(VALUES('public orders'[customer_id]), DATEADD('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[Date], -1, MONTH)) RETURN DIVIDE(COUNTROWS(INTERSECT(CurrentCustomers, PriorCustomers)), COUNTROWS(CurrentCustomers))
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 4483614a-d83d-4739-9a11-362aba73d0bc
 
-	measure 'Monthly Active Customers' =
-			
-			AVERAGE('public vw_customer_retention'[active_customers])
+	measure 'Monthly Active Customers' = AVERAGEX(VALUES('LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e'[MonthStart]), CALCULATE([Active Customers]))
 		formatString: 0
 		lineageTag: 37c26b79-3ffb-44f1-bd1c-7c164596db89
 

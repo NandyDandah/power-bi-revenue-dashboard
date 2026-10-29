@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "public vw_customer_retention"
+                      "Entity": "LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e"
                     }
                   },
-                  "Property": "order_month"
+                  "Property": "MonthStart"
                 }
               },
-              "queryRef": "public vw_customer_retention.order_month",
-              "nativeQueryRef": "order_month",
+              "queryRef": "Month",
+              "nativeQueryRef": "Month",
               "active": true
             }
           ]
@@ -36,22 +36,18 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "public vw_customer_retention"
-                        }
-                      },
-                      "Property": "retention_rate"
+                    "SourceRef": {
+                      "Entity": "Revenue_measures"
                     }
                   },
-                  "Function": 1
+                  "Property": "Retention Rate"
                 }
               },
-              "queryRef": "public vw_customer_retention.value",
-              "nativeQueryRef": "Returning customer share"
+              "queryRef": "Returning customer share",
+              "nativeQueryRef": "Returning customer share",
+              "active": true
             }
           ]
         }
@@ -63,10 +59,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "public vw_customer_retention"
+                    "Entity": "LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e"
                   }
                 },
-                "Property": "order_month"
+                "Property": "MonthStart"
               }
             },
             "direction": "Ascending"
@@ -144,6 +140,25 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7188E8'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

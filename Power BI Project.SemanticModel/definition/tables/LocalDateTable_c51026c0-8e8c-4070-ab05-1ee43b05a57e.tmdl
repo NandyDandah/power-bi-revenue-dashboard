@@ -87,6 +87,11 @@ table LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e
 
 		annotation TemplateId = Day
 
+	column MonthStart = DATE(YEAR([Date]), MONTH([Date]), 1)
+		dataType: dateTime
+		formatString: MMM yyyy
+		summarizeBy: none
+
 	hierarchy 'Date Hierarchy'
 		lineageTag: f005f416-8c8d-4eb5-9a5d-feed03148726
 

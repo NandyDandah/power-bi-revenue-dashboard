@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "portfolioSegmentRevenue",
   "position": {
-    "x": 648,
-    "y": 488,
+    "x": 852,
+    "y": 472,
     "z": 9001,
-    "height": 200,
-    "width": 600,
+    "height": 216,
+    "width": 396,
     "tabOrder": 9001
   },
   "visual": {
@@ -141,6 +141,25 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7188E8'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

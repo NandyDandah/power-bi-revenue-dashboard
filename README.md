@@ -10,32 +10,30 @@ The report contains **2,232 orders, 120 customers, eight sales representatives, 
 
 Monthly revenue charts show seasonality across 24 months. The executive page also compares revenue by product and customer segment. Pipeline measures exclude closed opportunities; lost deals count only Closed Lost records. The $65 million revenue target is a demonstration assumption for the full dataset, not an approved business budget.
 
-The legacy retention metric represents the share of current-month customers who also ordered in the previous month. It is not cohort retention. Monthly Active Customers shows the average monthly count across the selected summary months. Monthly summary tables are pre-aggregated and do not respond to customer or rep filters.
+The retention metric represents the share of customers in the selected period who also ordered in the preceding shifted period. At monthly grain this is returning-customer share, not cohort retention. Monthly Active Customers averages the distinct customer count over selected months. Trend visuals use the connected date table and order-level measures so customer and rep filters apply.
 
-The expanded model still requires a refresh and visual verification in Power BI Desktop. Existing screenshots predate this data expansion.
+After regenerating data with `python advance_project.py`, run `python refine_report.py` to restore the final presentation and filter-aware trend queries. The executive page includes monthly revenue, regional contribution, product rankings, discount analysis and customer segment comparisons.
+
+The expanded dataset was refreshed successfully in Power BI Desktop. The final stage-filter correction for pipeline values still requires a fresh Desktop check.
 
 The editable report uses embedded demonstration data. PostgreSQL scripts are included separately for reviewing the database design. GitHub displays static images; open the complete PBIP project in Power BI Desktop to interact with the report.
 
 ## Project Contents
 
-- `Power BI Project.pbip` - publish-ready editable Power BI Project file.
+- `Power BI Project.pbip` - editable Power BI Project file.
 - `Power BI Project.Report/` - report page and visual definitions.
 - `Power BI Project.SemanticModel/` - semantic model, relationships, tables, and DAX measures.
 - `SQL/` - PostgreSQL setup scripts for tables, sample data, and reporting views.
 - `screenshots/` - dashboard page previews for GitHub and recruiter review.
 - `PROJECT_SKILLS.md` - portfolio summary for recruiters and hiring managers.
 
-## Illustrative Previews
+## Dashboard Screenshots
 
-These existing images are illustrative portfolio previews, not screenshots of the current Power BI report. The updated report layout must be refreshed and captured in Power BI Desktop before replacing them with verified screenshots.
+Actual Power BI Desktop captures using the expanded synthetic dataset. Screenshots for the final Sales Funnel and Sales Rep Performance pages are pending verification.
 
 ![Executive Overview](screenshots/executive-overview.png)
 
 ![Customer Retention](screenshots/customer-retention.png)
-
-![Sales Funnel](screenshots/sales-funnel.png)
-
-![Sales Rep Performance](screenshots/sales-rep-performance.png)
 
 ## Dashboard Pages
 

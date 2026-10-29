@@ -3,10 +3,10 @@
   "name": "portfolioProductRevenue",
   "position": {
     "x": 32,
-    "y": 488,
+    "y": 472,
     "z": 9000,
-    "height": 200,
-    "width": 600,
+    "height": 216,
+    "width": 396,
     "tabOrder": 9000
   },
   "visual": {
@@ -141,6 +141,25 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7188E8'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }

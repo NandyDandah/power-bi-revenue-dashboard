@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "public vw_revenue_trends"
+                      "Entity": "LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e"
                     }
                   },
-                  "Property": "month"
+                  "Property": "MonthStart"
                 }
               },
-              "queryRef": "public vw_revenue_trends.month",
-              "nativeQueryRef": "month",
+              "queryRef": "Month",
+              "nativeQueryRef": "Month",
               "active": true
             }
           ]
@@ -36,22 +36,33 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "public vw_revenue_trends"
-                        }
-                      },
-                      "Property": "total_revenue"
+                    "SourceRef": {
+                      "Entity": "Revenue_measures"
                     }
                   },
-                  "Function": 0
+                  "Property": "Total Revenue"
                 }
               },
-              "queryRef": "public vw_revenue_trends.value",
-              "nativeQueryRef": "Revenue"
+              "queryRef": "Revenue",
+              "nativeQueryRef": "Revenue",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Revenue_measures"
+                    }
+                  },
+                  "Property": "Revenue Previous Year"
+                }
+              },
+              "queryRef": "Prior year",
+              "nativeQueryRef": "Prior year",
+              "active": true
             }
           ]
         }
@@ -63,10 +74,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "public vw_revenue_trends"
+                    "Entity": "LocalDateTable_c51026c0-8e8c-4070-ab05-1ee43b05a57e"
                   }
                 },
-                "Property": "month"
+                "Property": "MonthStart"
               }
             },
             "direction": "Ascending"
@@ -144,6 +155,25 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7188E8'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 }
