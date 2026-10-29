@@ -81,6 +81,17 @@
                   "Value": "'Revenue by product'"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C2410C'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -151,7 +162,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7188E8'"
+                      "Value": "'#C2410C'"
                     }
                   }
                 }

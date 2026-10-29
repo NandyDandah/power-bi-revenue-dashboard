@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontSize": "24pt",
                       "fontFamily": "Segoe UI",
-                      "color": "#202B35",
+                      "color": "#2563EB",
                       "fontWeight": "bold"
                     }
                   }
@@ -35,6 +35,7 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {}
   }
 }

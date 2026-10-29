@@ -81,6 +81,17 @@
                   "Value": "'Regional revenue contribution'"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7C3AED'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -151,7 +162,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7188E8'"
+                      "Value": "'#7C3AED'"
                     }
                   }
                 }

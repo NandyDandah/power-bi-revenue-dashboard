@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontSize": "24pt",
                       "fontFamily": "Segoe UI",
-                      "color": "#202B35",
+                      "color": "#7C3AED",
                       "fontWeight": "bold"
                     }
                   }
@@ -33,6 +33,7 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {}
   }
 }

@@ -81,6 +81,17 @@
                   "Value": "'Revenue by discount rate'"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F766E'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -151,7 +162,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7188E8'"
+                      "Value": "'#0F766E'"
                     }
                   }
                 }

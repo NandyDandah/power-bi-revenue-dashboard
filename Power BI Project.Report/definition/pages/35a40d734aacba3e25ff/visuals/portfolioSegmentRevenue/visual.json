@@ -81,6 +81,17 @@
                   "Value": "'Revenue by customer segment'"
                 }
               }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#BE185D'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -151,7 +162,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7188E8'"
+                      "Value": "'#BE185D'"
                     }
                   }
                 }

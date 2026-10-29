@@ -22,7 +22,7 @@
                     "textStyle": {
                       "fontSize": "24pt",
                       "fontFamily": "Segoe UI",
-                      "color": "#202B35",
+                      "color": "#B45309",
                       "fontWeight": "bold"
                     },
                     "value": "Sales Funnel"
@@ -33,6 +33,7 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {}
   }
 }

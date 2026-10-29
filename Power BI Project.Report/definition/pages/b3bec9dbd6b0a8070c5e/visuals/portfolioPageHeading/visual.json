@@ -22,7 +22,7 @@
                     "textStyle": {
                       "fontSize": "24pt",
                       "fontFamily": "Segoe UI",
-                      "color": "#202B35",
+                      "color": "#0F766E",
                       "fontWeight": "bold"
                     },
                     "value": "Customer Retention"
@@ -33,6 +33,7 @@
           }
         }
       ]
-    }
+    },
+    "visualContainerObjects": {}
   }
 }

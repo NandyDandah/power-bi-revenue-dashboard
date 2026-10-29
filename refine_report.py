@@ -61,3 +61,40 @@ for path in P.rglob('visual.json'):
     o=json.loads(path.read_text()); p=o['position']
     assert p['x']>=0 and p['y']>=0 and p['x']+p['width']<=1280 and p['y']+p['height']<=720,path
 print('Report JSON and visual bounds validated.')
+
+# Section accents identify pages; categorical charts retain a varied palette.
+section_colors={
+    '35a40d734aacba3e25ff':('#2563EB','#EFF6FF'),
+    'b3bec9dbd6b0a8070c5e':('#0F766E','#F0FDFA'),
+    'eae489f85a747848cfbe':('#B45309','#FFFBEB'),
+    'c0de5a1e5a1e00000001':('#7C3AED','#F5F3FF'),
+}
+chart_colors=['#2563EB','#0F766E','#C2410C','#7C3AED','#BE185D','#047857']
+for directory in (p for p in P.iterdir() if p.is_dir()):
+    accent,tint=section_colors[directory.name]
+    chart_index=0
+    for path in sorted(directory.rglob('visual.json')):
+        o=json.loads(path.read_text()); v=o['visual']; typ=v['visualType']
+        objects=v.setdefault('objects',{})
+        containers=v.setdefault('visualContainerObjects',{})
+        if typ=='textbox':
+            for paragraph in objects.get('general',[{}])[0].get('properties',{}).get('paragraphs',[]):
+                for run in paragraph.get('textRuns',[]): run.setdefault('textStyle',{})['color']=accent
+        elif typ in ('card','cardVisual','slicer'):
+            containers['background']=[{'properties':{'color':{'solid':{'color':lit("'"+tint+"'")}},'transparency':lit('0D')}}]
+            if typ=='card': objects['labels'][0]['properties']['color']={'solid':{'color':lit("'"+accent+"'")}}
+        else:
+            color=chart_colors[chart_index%len(chart_colors)]; chart_index+=1
+            if typ in ('donutChart','pieChart','lineChart'):
+                objects.pop('dataPoint',None)
+            else:
+                objects['dataPoint']=[{'properties':{'defaultColor':{'solid':{'color':lit("'"+color+"'")}}}}]
+            title=containers.get('title',[{'properties':{}}])
+            title[0]['properties']['fontColor']={'solid':{'color':lit("'"+color+"'")}}
+            containers['title']=title
+        save(path,o)
+theme_path=R/'Power BI Project.Report/StaticResources/SharedResources/BaseThemes/CY26SU04.json'
+theme=json.loads(theme_path.read_text())
+theme['dataColors']=['#2563EB','#D97706','#0F766E','#7C3AED','#BE185D','#65A30D','#0891B2','#DC2626']
+save(theme_path,theme)
+print('Applied blue, teal, amber and violet section accents with contrasting chart series.')
